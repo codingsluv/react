@@ -1,29 +1,52 @@
-import React, { useState } from 'react'
-import './App.css'
-import ProductLists from './components/ProductLists'
-import ProductCreate from './components/ProductCreate'
-import { Products } from './data/Products'
-
+import React from 'react';
+import ProductCreate from './components/ProductCreate';
+import ProductList from './components/ProductLists';
+import { Products } from './data/Products';
+import './App.css';
+import { useState } from 'react';
 
 const App = () => {
-  const [products, setProducts] = useState(Products)
-  const createProduct = () => {
+  const [products, setProducts] = useState(Products);
+  const editProductById = (id, data) => {
+    const updatedProducts = products.map((prod) => {
+      if (prod.id === id) {
+        console.log({ ...prod, ...data });
+        return { ...prod, ...data };
+      }
+
+      return prod;
+    });
+    console.log(updatedProducts);
+    setProducts(updatedProducts);
+  };
+  const onCreateProduct = (product) => {
     setProducts([
       ...products,
       {
-        id: Math.random(Math.random() * 100),
-      }
-    ])
-    console.log(products)
-  }
- return (
-  <>
-    <div className='app-title'>List Of Product</div>
-    <ProductCreate onCreateProduct={createProduct}/>
-    <ProductLists products={products}/>
-  </>
- )
-}
+        id: Math.round(Math.random() * 1998),
+        ...product,
+      },
+    ]);
+    console.log(products);
+  };
+  const onDeleteProduct = (id) => {
+    const updatedProducts = products.filter((prod) => {
+      return prod.id !== id;
+    });
+    setProducts(updatedProducts);
+  };
 
-export default App
+  return (
+    <>
+      <div className="app-title">Belanja Mobil</div>
+      <ProductCreate onCreateProduct={onCreateProduct} />
+      <ProductList
+        onEditProduct={editProductById}
+        products={products}
+        onDeleteProduct={onDeleteProduct}
+      />
+    </>
+  );
+};
 
+export default App;

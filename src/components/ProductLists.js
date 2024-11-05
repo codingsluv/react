@@ -1,21 +1,21 @@
-import React from 'react'
-import ProductCards from '../components/ProductCards'
-import { Products } from '../data/Products'
+import React from 'react';
+import ProductCard from './ProductCards';
 
-
-const ProductLists = () => {
+const ProductList = ({ products, onDeleteProduct, onEditProduct }) => {
   return (
-      <div className='cards'>
-      {Products.map(product => {
-        return <ProductCards 
-          key={product.id}
-          title={product.name}
-          description={product.description}
-          imageURL={product.imageURL}
-        s/>
+    <div className="cards">
+      {products.map((product) => {
+        return (
+          <ProductCard
+            key={product.id}
+            product={product}
+            onDeleteProduct={onDeleteProduct}
+            onEditProduct={onEditProduct}
+          />
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export default ProductLists
+export default ProductList;
