@@ -24,7 +24,7 @@ const ProductCards = (props) => {
       </h4>
       <p>{props.description}</p>
     </div>
-    <div className={`card-keranjang ${jumlahProduct > 0 ? 'jumlah-product' : 'show-keranjang'}`}>
+    <div className={`card-keranjang ${jumlahProduct > 0 ? 'jumlah-product' : 'hidden'}`}>
         {jumlahProduct > 0 ? <>
             <button onClick={handleMinus} className='button'>-</button>
             <div>{jumlahProduct}</div>
