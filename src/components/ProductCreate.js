@@ -54,9 +54,7 @@ const ProductCreate = ({onCreateProduct}) => {
                         onChange={handleChange}
                     />
                 </div>
-                <div className='add-input-submit'>
-                    <button className='add'>Add</button>
-                </div>
+                <input type="submit" className="edit-input-submit add" />
             </form>
         )}
     </div>
